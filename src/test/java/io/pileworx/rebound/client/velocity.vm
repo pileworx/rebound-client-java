@@ -1,0 +1,7 @@
+[
+#foreach($i in [1..5])
+  {
+    "propertyName":"this is my value"
+  }#if($foreach.count != 5), #end
+#end
+]
