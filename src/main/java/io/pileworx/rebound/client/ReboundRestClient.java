@@ -52,6 +52,10 @@ public class ReboundRestClient {
                 new DefineMockCmd(method, path, queryString, status, response, contentType, values));
     }
 
+    public Status clearMocks() {
+        return unirestClient.clearMocks(reboundHost);
+    }
+
     private String responseFromFile(Path responseFile) throws IOException {
         return new String(Files.readAllBytes(responseFile));
     }

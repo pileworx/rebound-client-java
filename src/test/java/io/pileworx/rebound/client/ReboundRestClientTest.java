@@ -38,8 +38,6 @@ public class ReboundRestClientTest {
 
     private ReboundRestClient reboundClient;
 
-
-
     @Before
     public void setup() {
         reboundClient = new ReboundRestClient(REBOUND_HOST, unirestClient);
@@ -185,5 +183,14 @@ public class ReboundRestClientTest {
         ReboundRestClient client = ReboundRestClient.create(REBOUND_HOST);
 
         assertThat(client, is(instanceOf(ReboundRestClient.class)));
+    }
+
+    @Test
+    public void clearShouldCallClearOnClient() {
+        when(unirestClient.clearMocks(eq(REBOUND_HOST))).thenReturn(RESPONSE_STATUS);
+
+        Status rStatus = reboundClient.clearMocks();
+
+        assertThat(rStatus, is(equalTo(RESPONSE_STATUS)));
     }
 }

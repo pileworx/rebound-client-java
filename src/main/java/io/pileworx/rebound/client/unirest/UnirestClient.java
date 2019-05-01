@@ -49,4 +49,15 @@ public class UnirestClient {
             return new Status("FAILED", e.getMessage());
         }
     }
+
+    public Status clearMocks(String reboundHost) {
+        try {
+            return Unirest.delete(reboundHost + "/mock")
+                    .header("Accept", "application/json")
+                    .asObject(Status.class).getBody();
+
+        } catch (UnirestException e) {
+            return new Status("FAILED", e.getMessage());
+        }
+    }
 }
