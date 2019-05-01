@@ -38,7 +38,7 @@ There are several way to create a mock. I'll cover two.
 First with a velocity template file.
  ex MyTemplate.vm
  
-```json
+```vtl
 [
 #foreach($i in [1..5])
   {
