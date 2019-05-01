@@ -7,5 +7,5 @@ jobs:
     - stage: build
       script: ./gradlew clean build
     - stage: publish
-      if: branch = master
+      if: branch = master AND type = push AND fork = false
       script: ./gradlew bintrayUpload -Dbintray.user=$BINTRAY_USER -Dbintray.key=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER
