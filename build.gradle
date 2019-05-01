@@ -8,7 +8,7 @@ plugins {
 ext{
     bintrayUser = System.getProperty("bintray.user")
     bintrayKey = System.getProperty("bintray.key")
-    buildNumber = "1"//System.getProperty("build.number")
+    buildNumber = System.getProperty("build.number")
 }
 
 group 'pileworx'
@@ -132,6 +132,6 @@ bintray {
         }
     }
 
-    //publish = true
+    publish = true
 }
 
