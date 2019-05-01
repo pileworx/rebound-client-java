@@ -77,7 +77,7 @@ Map<String, String> VALUES = new HashMap<>();
 
 VALUES.put("myValue", "this is my value");
 
-Status rStatus = client.createMock(METHOD, PATH, STATUS, CONTENT_TYPE, QUERY_STRING, RESPONSE_LITERAL, VALUES);
+Status status = client.createMock(METHOD, PATH, STATUS, CONTENT_TYPE, QUERY_STRING, RESPONSE_LITERAL, VALUES);
 ```
 
 In addition other createMock methods exist to send a more limited set of data in the mock.
