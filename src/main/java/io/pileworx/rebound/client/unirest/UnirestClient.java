@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class UnirestClient {
 
-    static final ObjectMapper mapper = new ObjectMapper() {
+    protected static final ObjectMapper mapper = new ObjectMapper() {
         private com.fasterxml.jackson.databind.ObjectMapper jObjectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
         @Override
@@ -28,7 +28,7 @@ public class UnirestClient {
             try {
                 return jObjectMapper.writeValueAsString(value);
             } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
+                throw new JsonSerializationException("Failed to serialize object", e);
             }
         }
     };

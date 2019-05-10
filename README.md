@@ -10,7 +10,7 @@ Usage
 -----
 
 Add maven repository to your build.
-  - [https://dl.bintray.com/pileworx/maven-release](https://dl.bintray.com/pileworx/maven-release)
+- [https://dl.bintray.com/pileworx/maven-release](https://dl.bintray.com/pileworx/maven-release)
 
 Include the dependency in your build:
 ```xml
