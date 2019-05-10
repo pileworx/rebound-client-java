@@ -3,6 +3,7 @@ plugins {
     id "com.jfrog.artifactory" version "4.5.4"
     id "com.jfrog.bintray" version "1.8.4"
     id "maven-publish"
+    id "jacoco"
 }
 
 ext{
