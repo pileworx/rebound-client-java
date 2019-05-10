@@ -3,6 +3,8 @@ rebound-client-java
 A convenience library for working with rebound in the jvm.
 
 [![Build Status](https://travis-ci.org/pileworx/rebound-client-java.svg?branch=develop)](https://travis-ci.org/pileworx/rebound)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b18750ca0df941d7beb0726487c83b39)](https://www.codacy.com/app/marcuslange/rebound-client-java?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pileworx/rebound-client-java&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b18750ca0df941d7beb0726487c83b39)](https://www.codacy.com/app/marcuslange/rebound-client-java?utm_source=github.com&utm_medium=referral&utm_content=pileworx/rebound-client-java&utm_campaign=Badge_Coverage)
 
 Please visit [rebound](https://github.com/pileworx/rebound) for details on the rebound mock server and it's API.
 
