@@ -6,15 +6,9 @@ stages:
   - name: publish
     if: branch = master AND type = push AND fork = false
 
-before_install:
-  - curl -L https://github.com/codacy/codacy-coverage-reporter/releases/download/6.0.0/codacy-coverage-reporter-6.0.0-assembly.jar
-
-after_success:
-  - java -jar ~/codacy-coverage-reporter-assembly.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
-
 jobs:
   include:
     - stage: build
-      script: ./gradlew clean build jacocoTestReport
+      script: ./gradlew clean build jacocoTestReport codacyUpload
     - stage: publish
       script: ./gradlew bintrayUpload -Dbintray.user=$BINTRAY_USER -Dbintray.key=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER

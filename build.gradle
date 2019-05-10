@@ -4,6 +4,7 @@ plugins {
     id "com.jfrog.bintray" version "1.8.4"
     id "maven-publish"
     id "jacoco"
+    id "io.github.ddimtirov.codacy" version "0.1.0"
 }
 
 ext{
@@ -135,4 +136,3 @@ bintray {
 
     publish = true
 }
-
