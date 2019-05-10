@@ -19,7 +19,7 @@ public class UnirestClient {
             try {
                 return jObjectMapper.readValue(value, valueType);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new JsonSerializationException("Failed to deserialize object", e);
             }
         }
 
