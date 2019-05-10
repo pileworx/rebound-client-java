@@ -4,13 +4,13 @@ A convenience library for working with rebound in the jvm.
 
 [![Build Status](https://travis-ci.org/pileworx/rebound-client-java.svg?branch=develop)](https://travis-ci.org/pileworx/rebound)
 
-Please visit for https://github.com/pileworx/rebound for details on the rebound mock server and it's API.
+Please visit [rebound](https://github.com/pileworx/rebound) for details on the rebound mock server and it's API.
 
 Usage
 -----
 
 Add maven repository to your build.
-- https://dl.bintray.com/pileworx/maven-release
+  - [https://dl.bintray.com/pileworx/maven-release](https://dl.bintray.com/pileworx/maven-release)
 
 Include the dependency in your build:
 ```xml
@@ -18,7 +18,6 @@ Include the dependency in your build:
   <groupId>pileworx</groupId>
   <artifactId>rebound-client-java</artifactId>
   <version>0.1.0</version>
-  <type>pom</type>
 </dependency>
 ```
 API
