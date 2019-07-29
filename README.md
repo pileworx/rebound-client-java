@@ -86,7 +86,7 @@ In addition other createMock methods exist to send a more limited set of data in
 Teardown
 --------
 
-In your teardown, you can reset the muck server like this.
+In your teardown, you can reset the mock server like this.
 
 ```java
 Status status = client.clearMocks();
