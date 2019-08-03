@@ -7,7 +7,7 @@ plugins {
     id "io.github.ddimtirov.codacy" version "0.1.0"
 }
 
-ext{
+ext {
     bintrayUser = System.getProperty("bintray.user")
     bintrayKey = System.getProperty("bintray.key")
     buildNumber = System.getProperty("build.number")
@@ -16,7 +16,7 @@ ext{
 group 'pileworx'
 version '0.1.0'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 repositories {
     mavenLocal()
@@ -28,6 +28,8 @@ dependencies {
     compile('com.mashape.unirest:unirest-java:1.4.9')
     compile('com.fasterxml.jackson.core:jackson-databind:2.9.8')
     compile('com.fasterxml.jackson.core:jackson-annotations:2.9.8')
+    compileOnly('org.projectlombok:lombok:1.18.8')
+    annotationProcessor("org.projectlombok:lombok:1.18.8")
     testCompile('junit:junit:4.12')
     testCompile('org.mockito:mockito-core:2.23.0')
     testCompile('org.hamcrest:hamcrest-core:1.3')
