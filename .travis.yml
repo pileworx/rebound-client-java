@@ -1,14 +1,10 @@
 language: java
 jdk:
-  - openjdk8
+  - openjdk11
 stages:
   - build
-  - name: publish
-    if: branch = master AND type = push AND fork = false
 
 jobs:
   include:
     - stage: build
       script: ./gradlew clean build jacocoTestReport codacyUpload
-    - stage: publish
-      script: ./gradlew bintrayUpload -Dbintray.user=$BINTRAY_USER -Dbintray.key=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER
