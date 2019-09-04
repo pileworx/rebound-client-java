@@ -28,13 +28,13 @@ public class UnirestClientTest {
             req.method = GET;
             req.path = "/foo";
             req.query = "foo=bar&bar=baz";
-            req.headers = Header.of​("Accept", "application/hal+json");
+            req.headers = Header.of("Accept", "application/hal+json");
             req.body = "{\"foo\":\"bar\"}";
         }).build();
         m.then = List.of(
                 new DefineResponse().with(resp -> {
                     resp.status = 200;
-                    resp.headers = Header.of​("Content-Type", "application/json");
+                    resp.headers = Header.of("Content-Type", "application/json");
                     resp.body = "[#foreach($i in [1..5]){\"propertyName\":\"this is my value\"} #if($foreach.count != 5), #end #end]";
                     resp.values = values;
                 }).build()
