@@ -11,15 +11,12 @@ Please visit [rebound](https://github.com/pileworx/rebound) for details on the r
 Usage
 -----
 
-Add maven repository to your build.
--   [https://dl.bintray.com/pileworx/maven-release](https://dl.bintray.com/pileworx/maven-release)
-
 Include the dependency in your build:
 ```xml
 <dependency>
-  <groupId>pileworx</groupId>
+  <groupId>io.pileworx</groupId>
   <artifactId>rebound-client-java</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 API
@@ -34,10 +31,38 @@ ReboundRestClient client = ReboundRestClient.create(reboundHost);
 
 Mocking
 -------
-There are several way to create a mock. I'll cover two.
+
+Defining a mock:
+
+```java
+var mock = new DefineMock().with(m -> {
+            m.scenario = "Test Scenario";
+            m.when = new DefineRequest().with(req -> {
+                req.method = Method.GET;
+                req.path = "/foo";
+                req.query = "foo=bar&bar=baz";
+                req.headers = Header.of​("Accept", "application/hal+json");
+                req.body = "{\"foo\":\"bar\"}";
+            }).build();
+            m.then = List.of(
+                    new DefineResponse().with(resp1 -> {
+                        resp1.status = 200;
+                        resp1.headers = Header.of​("Content-Type", "application/json");
+                        resp1.body = "[#foreach($i in [1..5]){\"propertyName\":\"this is my value\"} #if($foreach.count != 5), #end #end]";
+                    }).build(),
+                    new DefineResponse().with(resp2 -> {
+                        resp2.status = 200;
+                        resp2.headers = Header.of​("Content-Type", "application/json");
+                        resp2.bodyFromFile = Paths.get("./velocity.vm");
+                        resp2.values = VALUES;
+                    }).build()
+            );
+        }).build();
+```
 
 First with a velocity template file.
  ex MyTemplate.vm
+
  
 ```vtl
 [
