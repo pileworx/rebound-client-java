@@ -35,7 +35,7 @@ Mocking
 Defining a mock:
 
 ```java
-var mock = new DefineMock().with(m -> {
+Mock mock = new DefineMock().with(m -> {
             m.scenario = "Test Scenario";
             m.when = new DefineRequest().with(req -> {
                 req.method = Method.GET;
@@ -53,60 +53,20 @@ var mock = new DefineMock().with(m -> {
                     new DefineResponse().with(resp2 -> {
                         resp2.status = 200;
                         resp2.headers = Header.of​("Content-Type", "application/json");
-                        resp2.bodyFromFile = Paths.get("./velocity.vm");
-                        resp2.values = VALUES;
+                        resp2.bodyFromFile = Paths.get("./src/test/java/io/pileworx/rebound/client/velocity.vm");
+                        resp2.values = Map.of("myValue", "this is my value");
                     }).build()
             );
         }).build();
 ```
-
-First with a velocity template file.
- ex MyTemplate.vm
-
- 
-```vtl
-[
-#foreach($i in [1..5])
-  {
-    "propertyName":"${myValue}"
-  }#if($foreach.count != 5), #end
-#end
-]
-```
+If one response is supplied, it will be returned on every matching request. If a list is supplied, they will return in order. After the last response is returned following requests will result in error.
+Response Body support velocity templates. They can be defined inline or from a vm file. For more info please see [Velocity](http://people.apache.org/~henning/velocity/html/ch02s02.html). For more info on each of the properties, please see the rebound documentation at [rebound](https://github.com/pileworx/rebound).
 
 Then you can add the mock to the server:
 
 ```java
-String METHOD = "GET";
-String PATH = "/foo";
-int STATUS = 200;
-String QUERY_STRING = "foo=bar&bar=baz";
-String CONTENT_TYPE = "application/hal+json";
-Path RESPONSE_BY_PATH = Paths.get("./src/test/java/io/pileworx/MyTemplate.vm");
-Map<String, String> VALUES = new HashMap<>();
-
-VALUES.put("myValue", "this is my value");
-
-Status status = client.createMock(METHOD, PATH, STATUS, CONTENT_TYPE, QUERY_STRING, RESPONSE_BY_PATH, VALUES);
+Status status = client.createMock(mock);
 ```
-
-The second is with a string literal (this can still be velocity template language), instead of an external file.
-
-```java
-String METHOD = "POST";
-String PATH = "/foo";
-int STATUS = 200;
-String QUERY_STRING = "foo=bar&bar=baz";
-String CONTENT_TYPE = "application/hal+json";
-String RESPONSE_LITERAL = "[#foreach($i in [1..5]){\"propertyName\":\"${myValue}\"} #if($foreach.count != 5), #end #end]";
-Map<String, String> VALUES = new HashMap<>();
-
-VALUES.put("myValue", "this is my value");
-
-Status status = client.createMock(METHOD, PATH, STATUS, CONTENT_TYPE, QUERY_STRING, RESPONSE_LITERAL, VALUES);
-```
-
-In addition other createMock methods exist to send a more limited set of data in the mock.
 
 Teardown
 --------
