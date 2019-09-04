@@ -4,14 +4,20 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import io.pileworx.rebound.client.DefineMockCmd;
+import io.pileworx.rebound.client.definition.Mock;
 import io.pileworx.rebound.client.Status;
 
 import java.io.IOException;
 
 public class UnirestClient {
 
-    static final ObjectMapper mapper = new ObjectMapper() {
+    private static final String ACCEPT = "Accept";
+    private static final String CONTENT_TYPE = "Content-Type";
+    private static final String APPLICATION_JSON = "application/json";
+    private static final String URI_PATH = "mock";
+    private static final String STATUS_FAILED = "FAILED";
+
+    protected static final ObjectMapper mapper = new ObjectMapper() {
         private com.fasterxml.jackson.databind.ObjectMapper jObjectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
         @Override
@@ -19,7 +25,7 @@ public class UnirestClient {
             try {
                 return jObjectMapper.readValue(value, valueType);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new JsonSerializationException("Failed to deserialize object", e);
             }
         }
 
@@ -28,7 +34,7 @@ public class UnirestClient {
             try {
                 return jObjectMapper.writeValueAsString(value);
             } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
+                throw new JsonSerializationException("Failed to serialize object", e);
             }
         }
     };
@@ -37,27 +43,27 @@ public class UnirestClient {
         Unirest.setObjectMapper(mapper);
     }
 
-    public Status execMock(String reboundHost, DefineMockCmd cmd) {
+    public Status execMock(String reboundHost, Mock cmd) {
         try {
-            return Unirest.put(reboundHost + "/mock")
-                    .header("Accept", "application/json")
-                    .header("Content-Type", "application/json")
+            return Unirest.put(String.format("%s/%s", reboundHost, URI_PATH))
+                    .header(ACCEPT, APPLICATION_JSON)
+                    .header(CONTENT_TYPE, APPLICATION_JSON)
                     .body(cmd)
-                    .asObject(Status.class).getBody();
-
+                    .asObject(Status.class)
+                    .getBody();
         } catch (UnirestException e) {
-            return new Status("FAILED", e.getMessage());
+            return new Status(STATUS_FAILED, e.getMessage());
         }
     }
 
     public Status clearMocks(String reboundHost) {
         try {
-            return Unirest.delete(reboundHost + "/mock")
-                    .header("Accept", "application/json")
-                    .asObject(Status.class).getBody();
-
+            return Unirest.delete(String.format("%s/%s", reboundHost, URI_PATH))
+                    .header(ACCEPT, APPLICATION_JSON)
+                    .asObject(Status.class)
+                    .getBody();
         } catch (UnirestException e) {
-            return new Status("FAILED", e.getMessage());
+            return new Status(STATUS_FAILED, e.getMessage());
         }
     }
 }
