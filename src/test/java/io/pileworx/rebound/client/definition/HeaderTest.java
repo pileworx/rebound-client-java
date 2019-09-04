@@ -12,7 +12,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateTenHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE,
                 NAME, VALUE,
@@ -29,7 +29,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateNineHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE,
                 NAME, VALUE,
@@ -45,7 +45,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateEightHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE,
                 NAME, VALUE,
@@ -60,7 +60,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateSevenHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE,
                 NAME, VALUE,
@@ -74,7 +74,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateSixHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE,
                 NAME, VALUE,
@@ -87,7 +87,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateFiveHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE,
                 NAME, VALUE,
@@ -99,7 +99,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateFourHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE,
                 NAME, VALUE,
@@ -110,7 +110,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateThreeHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE,
                 NAME, VALUE);
@@ -120,7 +120,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateTwoHeaders() {
-        var headers = Header.of​(
+        var headers = Header.of(
                 NAME, VALUE,
                 NAME, VALUE);
 
@@ -129,7 +129,7 @@ public class HeaderTest {
 
     @Test
     public void canCreateOneHeaders() {
-        var headers = Header.of​(NAME, VALUE);
+        var headers = Header.of(NAME, VALUE);
 
         assertThat(headers.size(), is(equalTo(1)));
     }
