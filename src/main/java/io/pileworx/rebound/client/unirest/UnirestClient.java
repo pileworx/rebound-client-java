@@ -1,11 +1,11 @@
 package io.pileworx.rebound.client.unirest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.mashape.unirest.http.ObjectMapper;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import io.pileworx.rebound.client.definition.Mock;
 import io.pileworx.rebound.client.Status;
+import kong.unirest.ObjectMapper;
+import kong.unirest.Unirest;
+import kong.unirest.UnirestException;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ public class UnirestClient {
     private static final String STATUS_FAILED = "FAILED";
 
     protected static final ObjectMapper mapper = new ObjectMapper() {
-        private com.fasterxml.jackson.databind.ObjectMapper jObjectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        private final com.fasterxml.jackson.databind.ObjectMapper jObjectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
         @Override
         public <T> T readValue(String value, Class<T> valueType) {
@@ -40,7 +40,7 @@ public class UnirestClient {
     };
 
     public UnirestClient() {
-        Unirest.setObjectMapper(mapper);
+        Unirest.config().setObjectMapper(mapper);
     }
 
     public Status execMock(String reboundHost, Mock cmd) {

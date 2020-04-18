@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  rebound:
+    image: pileworx/rebound:0.2.2
+    restart: always
+    ports:
+      - "8585:8585"
+    networks:
+      - pairing-solution
+networks:
+  pairing-solution:
